@@ -1,0 +1,15 @@
+Install Dnajgo >     pip install -r requirements.txt
+RUN SERVER >         py manage.py runserver
+BEFORE UPLOAD >      py manage.py collectstatic
+======================================================
+python -m smtpd -n -c DebuggingServer localhost:1025
+
+todo_done make product page dynamic
+todo_done in contactus selector email receiver
+todo_done make base file
+todo_done process profile picture
+todo profile complete page
+todo form translate
+todo access control in admin
+todo add captcha to all form
+todo make form length equal to model length

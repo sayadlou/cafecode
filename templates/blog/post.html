@@ -1,0 +1,27 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% block title %}
+    cafecode Blog
+{% endblock title %}
+{% block body_attr %}
+    class=""
+{% endblock body_attr %}
+{% block content %}
+<!-- Section Blog -->
+<div id="content" class="sheet-white">
+    <div class="sheet">
+        <div class="row post">
+            <div class="col-lg-4">
+                <div class="post-img">
+                    <img src="{{ post.picture.url }}" class="post-img" alt="...">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

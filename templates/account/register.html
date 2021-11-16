@@ -1,0 +1,54 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Register
+{% endblock title %}
+{% block background %}
+    id="home" class="bg-account"
+{% endblock background %}
+{% block content %}
+    <!-- Wallpaper -->
+    <div class="sheet">
+        <div class="wallpaper">
+            <div class="row">
+                <div class="wp-card col-sm-6 col-lg-4">
+                    <h3>{% trans "Customer" %}</h3>
+                    <div class="card card-bg0">
+                        <div class="card-header">{% trans "Create account"  %}</div>
+                        <div class="card-body">
+                            <!-- Form begins here -->
+                            <form action="{% url 'register' %}" method="post">
+                                {% csrf_token %}
+                                {{ customer_form.title }}
+                                {{ customer_form.name }}
+                                {{ signup_form.username }}
+                                {{ customer_form.email }}
+                                {{ signup_form.password1 }}
+                                {{ signup_form.password2 }}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="agree" id="agree">
+                                    <label class="form-check-label" for="rememberMe">
+                                        {% trans "I Agree to" %}  <a href="#">{% trans "Privacy Policy" %}</a>
+                                    </label>
+                                </div>
+                                <div class="card-footer">
+                                    <input class="btn btn-primary" type="submit" value="{% trans "Create account"  %}">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="wp-logo col-sm-6 col-lg-8">
+                    <!-- nothing here -->
+                </div>
+            </div>
+            <div class="arrow-holder">
+                <div id="arrow" class="bounce">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,438 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, world!</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "cafecode/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "cafecode/css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "cafecode/css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "cafecode/css/style.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+    <link rel="stylesheet" href="{% static "cafecode/css/fontawesome-free/css/all.min.css" %}">
+
+    <script src="{% static "cafecode/js/jquery.min.js" %}"></script>
+    <script src="{% static "cafecode/js/jquery-ui.min.js" %}"></script>
+    <script src="{% static "cafecode/js/owl.carousel.min.js" %}"></script>
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script>
+                alertify.success('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'error' %}
+            <script>
+                alertify.error('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'warning' %}
+            <script>
+                alertify.warning('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'info' %}
+            <script>
+                alertify.message('{{ message }}');
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<!-- Image and text -->
+<div class="d-flex justify-content-center">
+    <div id="navbarr" class="abs-top my-2">
+        <nav class="navbar navbar-expand-lg navbar-light  py-0 ">
+            <button class="navbar-toggler mr-3 mleft-10 " type="button" data-toggle="collapse"
+                    data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mleft-10 " id="navbarText">
+                <ul class="navbar-nav mr-auto text-uppercase">
+                    <li class="nav-item ">
+                        <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Über Uns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'price' %}">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">LEISTUNGEN</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'contactus' %}">kontakt</a>
+                    </li>
+                    <li class="nav-item bg-danger">
+                        <a class="nav-link text-white" href="{% url 'profile' %}">Profil</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<style>
+    #profile-data {
+        height: 100vh;
+        min-height: 500px;
+        width: 100%;
+        background-size: cover
+    }
+
+    #user-details {
+        min-height: 60vh;
+        background-size: cover;
+    }
+
+    #get-offer-1 {
+        height: 60vh;
+        min-height: 300px;
+        background-size: cover;
+        overflow-y: auto;
+    }
+
+    .product-section-card {
+        background-size: cover;
+    }
+
+    hr.dotted {
+        border-top: 1px dotted black;
+    }
+
+    .list-group-item-offer {
+        background-color: transparent;
+        padding: .75rem 3rem;
+        border: 0px solid
+    }
+
+    .list-group-item {
+        background-color: transparent;
+
+    }
+
+
+    .item-selected {
+        border: 1px solid #a37240 !important;
+        border-radius: .40rem !important;
+        background-color: #e2e2e2;
+    {#padding: .05em 1rem;#}{#margin: .70em 2rem;#}{#margin-right: 2rem;#}
+    }
+
+    .card-body {
+        background-color: transparent;
+    }
+
+    .text-shaow {
+        text-shadow: 2px 2px black;
+    }
+
+    .free-space {
+        min-height: 150px;
+    }
+
+    .mt-15 {
+        margin-top: 8rem !important
+    }
+</style>
+
+<div id="profile-data" style="background-image: url({% static 'account/images/profile-data-bg.jpg' %})">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div id="get-offer-1" class="mt-15 my-2 rounded-lg "
+                     style="background-image: url({% static 'cafecode/images/services-background.jpg' %})">
+                    <div class="px-4 pt-3">
+                        <p>Kundenportal / Login</p>
+                        <hr class="dotted">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="d-flex justify-content-end">
+                                <input type="submit" class=" btn btn-primary my-4" value="">
+                            </div>
+                        </form>
+                        <p class="">Passwort vergessen?&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a
+                                href="{% url "reset_password" %}">Reset Passwort</a></p>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="user-details" class="min-vh-100"
+     style="background-image: url({% static 'account/images/user-details-bg.jpg.png' %})">
+    <div class="container">
+        <h3 class="text-center text-white text-shaow pt-5"></h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Auftrag:</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Auftragsnummer:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            002-556321-87
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Datum:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            21.01.2021
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Bearbeiter:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            Saeed Sayad
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Auftragsdetails:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            PDF Herunterladen
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Zustand:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            Bestätigt
+                        </h4>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-6">
+                <h3>Details:</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Artikel:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            SPRESSO - Online Shop System
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Domain:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            www.mydomain.de
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Total Preis:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            2.500 €
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Bezahlt:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            2.000 €
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            Offen:
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            500 €
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-10 d-flex justify-content-end">
+            {#            <input type="submit" class=" btn btn-primary my-4" value="Bezahlen">#}
+            <button type="submit" class="btn btn-success">
+                Bezahlen&nbsp&nbsp<i class="fa fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="progress mt-10">
+            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                 aria-valuemax="100"></div>
+        </div>
+    </div>
+</div>
+<div class="contact bg-dark">
+    <div class="container">
+        <div class="row text-white">
+            <div class="col-sm-4 my-sm-5">
+                <div class="px-3 pt-3">
+                    <h3>list</h3>
+                    <hr style="border-top: 3px solid white">
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item" id="1">item 1</li>
+                    <li class="list-group-item" id="2">item 2</li>
+                    <li class="list-group-item" id="3">item 3</li>
+                    <li class="list-group-item" id="4">item 4</li>
+                    <li class="list-group-item" id="5">item 5</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 my-sm-5">
+                <div class="px-3 pt-3">
+                    <h3>list</h3>
+                    <hr style="border-top: 3px solid white">
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item" id="1">item 1</li>
+                    <li class="list-group-item" id="2">item 2</li>
+                    <li class="list-group-item" id="3">item 3</li>
+                    <li class="list-group-item" id="4">item 4</li>
+                    <li class="list-group-item" id="5">item 5</li>
+                </ul>
+            </div>
+            <div class="col-sm-4 my-sm-5">
+                <div class="px-3 pt-3">
+                    <h3>list</h3>
+                    <hr style="border-top: 3px solid white">
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item" id="1">
+                        <div class="row">
+                            <div class="col-6">
+                                fone
+                            </div>
+                            <div class="col-6">
+                                +99855578
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item" id="2">
+                        <div class="row">
+                            <div class="col-6">
+                                fone
+                            </div>
+                            <div class="col-6">
+                                +99855578
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item" id="3">
+                        <div class="row">
+                            <div class="col-6">
+                                fone
+                            </div>
+                            <div class="col-6">
+                                +99855578
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item" id="4">
+                        <div class="row">
+                            <div class="col-6">
+                                fone
+                            </div>
+                            <div class="col-6">
+                                +99855578
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item" id="5">
+                        <div class="row">
+                            <div class="col-6">
+                                fone
+                            </div>
+                            <div class="col-6">
+                                +99855578
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="">
+    <div class="text-center " style="height: 10vh;background-color: #000000">
+        <div>
+            <p class="text-white pt-3"><a class="text-white" href="">Impressum</a> | <a class="text-white"
+                                                                                        href="">AGB</a> | <a
+                    class="text-white" href="#">Datenschutz</a></p>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="{% static "cafecode/js/bootstrap.min.js" %}"></script>
+<script src="{% static "cafecode/js/script.js" %}"></script>
+</body>
+</html>

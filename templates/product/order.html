@@ -1,0 +1,137 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% block title %}
+    cafecode Blog
+{% endblock title %}
+{% block body_attr %}
+    class="bg-order"
+{% endblock body_attr %}
+{% block content %}
+    <div id="app-body">
+        <div class="sheet">
+            <!-- MENU -->
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link active" href="{% url 'home' %}">Produkte</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" href="{% url 'home' %}">Portfolio</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" href="{% url 'home' %}">Leistungen</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" href="{% url 'home' %}">Blog</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" href="{% url 'home' %}">Kontakt</a>
+                            </li>
+                            <li class="nav-item cool-link">
+                                <a class="nav-link" href="{% url 'home' %}">Profil</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Wallpaper -->
+        <div class="sheet">
+            <div class="wallpaper">
+                <div class="row">
+                    <div class="wp-card col-sm-6 col-lg-4">
+                        <h3>Espresso</h3>
+                        <h6>Cafecode | Online Shop System</h6>
+                        <div class="card card-bg0">
+                            <div class="card-header">Beschreibung</div>
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                                    no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary text-light" href="#form" role="button">Weiter</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wp-logo col-sm-6 col-lg-8">
+                        <!-- nothing here -->
+                    </div>
+                </div>
+                <div class="arrow-holder">
+                    <div id="arrow" class="bounce">
+                        <i class="fas fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Form -->
+    <div id="form" class="sheet-white">
+        <div class="sheet">
+            <h3 class="title up text-center">Bestellen Sie bitte!!!</h3>
+            <div class="row post">
+                <div class="col-lg-4">
+                    <select class="form-select form-control" aria-label="Anrede">
+                        <option selected>Herr</option>
+                        <option value="1">Frau</option>
+                    </select>
+                    <input type="text" name="" class="form-control" placeholder="Name, Vorname" required="" id="name">
+                    <input type="text" name="" class="form-control" placeholder="Gewerbe- / Firmenname" required=""
+                           id="company">
+                    <input type="text" name="" class="form-control" placeholder="E-Mail" required="" id="email">
+                    <input type="text" name="" class="form-control" placeholder="Telefonnummer" required="" id="phone">
+                    <textarea class="form-control" placeholder="Beschreibung der Dienstleistungen" rows="3"
+                              id="desc"></textarea>
+                </div>
+                <div class="col-lg-2 col-md-0 col-sm-12"><!-- nothing here --></div>
+                <div class="col-lg-2 col-sm-6">
+                    <ul id="offer-list1" class="list-group list-group-flush">
+                        <li class="form-control" id="1" value="100"><i class="fas fa-comments"></i> Bewertung</li>
+                        <li class="form-control" id="2" value="100"><i class="fab fa-paypal"></i> Paypal</li>
+                        <li class="form-control" id="3" value="100"><i class="fas fa-flag"></i> Mehrsprachig</li>
+                        <li class="form-control" id="4" value="100"><i class="fas fa-flask"></i> Filter</li>
+                        <li class="form-control" id="5" value="100"><i class="fas fa-video"></i> Video</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <ul id="offer-list2" class="list-group list-group-flush">
+                        <li class="form-control" id="6" value="100"><i class="fas fa-comments"></i> Bewertung</li>
+                        <li class="form-control" id="7" value="100"><i class="fab fa-paypal"></i> Paypal</li>
+                        <li class="form-control" id="8" value="100"><i class="fas fa-flag"></i> Mehrsprachig</li>
+                        <li class="form-control" id="9" value="100"><i class="fas fa-flask"></i> Filter</li>
+                        <li class="form-control" id="10" value="100"><i class="fas fa-video"></i> Video</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <ul id="offer-list3" class="list-group list-group-flush">
+                        <li class="form-control" id="11" value="100"><i class="fas fa-comments"></i> Bewertung</li>
+                        <li class="form-control" id="12" value="100"><i class="fab fa-paypal"></i> Paypal</li>
+                        <li class="form-control" id="13" value="100"><i class="fas fa-flag"></i> Mehrsprachig</li>
+                        <li class="form-control option" id="14" value="100"><i class="fas fa-flask"></i> Filter</li>
+                        <li class="form-control option" id="15" value="100"><i class="fas fa-video"></i> Video</li>
+                    </ul>
+                    <div id="price"> <!-- Import Price automatic usnig Script --> </div>
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary" type="button">Anfrage senden</button>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

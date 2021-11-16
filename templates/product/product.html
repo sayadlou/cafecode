@@ -1,0 +1,61 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Blog
+{% endblock title %}
+{% block body_attr %}
+    class="{{ product.bg_class }}"
+{% endblock body_attr %}
+{% block content %}
+        <div class="sheet">
+            <div class="wallpaper">
+                <div class="row">
+                    <div class="wp-card col-sm-6 col-lg-4">
+                        <h3>{{ product.title }}</h3>
+                        <h6>{{ product.subtitle }}</h6>
+                        <div class="card card-bg0">
+                            <div class="card-header">{{ product.card_header }}</div>
+                            <div class="card-body">
+                                <p>{{ product.card_body }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-primary text-light" href="#content" role="button">Mehr Info</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wp-logo col-sm-6 col-lg-8">
+                        <!-- nothing here -->
+                    </div>
+                </div>
+                <div class="arrow-holder">
+                    <div id="arrow" class="bounce">
+                        <i class="fas fa-chevron-down fa-2x"></i>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <!-- Section Page Content -->
+    <div id="content" class="sheet-white">
+        <div class="sheet">
+            <div class="row post">
+                <div class="col-lg-8">
+                    <h3>{{ product.post_title }}</h3>
+                    <p>{{ product.post_content }}</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="post-img">
+                        <img src="{% static "cafecode/images/beratung.jpg" %}" class="post-img" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="post-button">
+                <a class="btn btn-primary text-light" href="{% url 'order' %}" role="button">Optionen und Preise</a>
+                <a class="btn btn-dark" href="{{ product.overview.url }}">Übersicht (PDF)</a>
+                <a class="btn btn-dark" href="{{ product.online_demo }}">Online Demo</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

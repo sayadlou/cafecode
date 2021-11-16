@@ -1,0 +1,59 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Blog
+{% endblock title %}
+{% block body_attr %}
+    class=""
+{% endblock body_attr %}
+{% block content %}
+    <!-- Section Blog -->
+    <div id="content" class="sheet-white">
+        <div class="sheet">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="row post">
+                        <div class="col-lg-4">
+                            <div class="post-img">
+                                <img src="{{ post.picture.url }}" class="post-img" alt="...">
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.content }}</p>
+
+                            <a class="btn btn-primary text-light" href="{% url "blog_detail" post.id %}"
+                               role="button">{% trans "Continue" %}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h3>{% trans "No post" %}</h3>
+            {% endif %}
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if previous_previous_page %}
+                    <li class="page-item"><a class="page-link"
+                                             href="{% url page_address previous_previous_page %}">{{ previous_previous_page }}</a>
+                    </li>
+                {% endif %}
+                {% if previous_page %}
+                    <li class="page-item"><a class="page-link"
+                                             href="{% url page_address previous_page %}">{{ previous_page }}</a></li>
+                {% endif %}
+                <li class="page-item active"><a class="page-link">{{ page_number }}</a></li>
+                {% if next_page %}
+                    <li class="page-item"><a class="page-link"
+                                             href="{% url page_address next_page %}">{{ next_page }}</a></li>
+                {% endif %}
+                {% if next_next_page %}
+                    <li class="page-item"><a class="page-link"
+                                             href="{% url page_address next_next_page %}">{{ next_next_page }}</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+{% endblock content %}

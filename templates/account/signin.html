@@ -1,0 +1,60 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Login
+{% endblock title %}
+{% block background %}
+    id="home" class="bg-account"
+{% endblock background %}
+{% block content %}
+    <!-- Wallpaper -->
+    <div class="sheet">
+        <div class="wallpaper">
+            <div class="row">
+                <div class="wp-card col-sm-6 col-lg-4">
+                    <!-- nothing here - delete the Card! -->
+                    <h3>{% trans "Customer" %}</h3>
+                    <h6>{% trans "Sign in to access your profile" %}</h6>
+                    <div class="card card-bg0">
+                        <div class="card-header">{% trans "Sign in" %}</div>
+                        <div class="card-body">
+                            <form action="{% url 'signin' %}" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="username_login" class="form-control" placeholder="Benutzname"
+                                       required=""
+                                       id="id_username_login">
+                                <input type="password" name="password_login" class="form-control" placeholder="Passwort"
+                                       required=""
+                                       id="id_password_login">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"  name="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        {% trans "Remember me" %}
+                                    </label>
+                                </div>
+                                <p>
+                                    <br>{% trans "Forgot Password?" %}<span><a href="{% url "reset_password" %}">{% trans "Reset your password" %}</a></span>
+                                </p>
+                        </div>
+
+                        <div class="card-footer">
+                            <input class="btn btn-primary" type="submit" value="{% trans "Sign in" %}">
+                            <a class="btn btn btn-outline-dark" href="{% url "register" %}" type="button">{% trans "Create Account" %}</a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="wp-logo col-sm-6 col-lg-8">
+                    <!-- nothing here -->
+                </div>
+            </div>
+            <div class="arrow-holder">
+                <div id="arrow" class="bounce">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

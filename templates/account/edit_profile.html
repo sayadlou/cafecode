@@ -1,0 +1,58 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Profile
+{% endblock title %}
+{% block body_attr %}
+    id="home" class="bg-account"
+{% endblock body_attr %}
+{% block content %}
+    {% for field in customer_form %}
+        {% if field.errors %}
+            <script>
+                alertify.error('{{ field.errors.as_text }}');
+            </script>
+        {% endif %}
+    {% endfor %}
+    <!-- Wallpaper -->
+    <div class="sheet">
+        <div class="wallpaper">
+            <div class="wp-card ">
+                <h3>{% trans "Customer profile" %}</h3>
+                <div class="card card-bg0">
+                    <div class="card-body">
+                        <div class="user-details">
+                            {#                            <form method="post" enctype="multipart/form-data">#}
+                            <form enctype="multipart/form-data"  action="" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="user-info">
+                                            <b>{% trans "Name:" %}</b><br>
+                                            {{ customer_form.name }}
+                                            <b>{% trans "Company name:" %}</b><br>
+                                            {{ customer_form.company_name }}
+                                            <b>{% trans "Address:" %}</b><br>
+                                            {{ customer_form.address }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="user-info">
+
+                                            <b>{% trans "Profile picture:" %}</b><br>
+                                            {{ customer_form.picture }}
+                                            <b>{% trans "Phone:" %}</b><br>
+                                            {{ customer_form.phone_number }}
+                                            <input class="btn btn-primary " type="submit" value="{% trans "Save" %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

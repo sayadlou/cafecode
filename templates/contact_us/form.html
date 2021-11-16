@@ -1,0 +1,53 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    Cafecode contact us
+{% endblock title %}
+{% block body_attr %}
+    class=""
+{% endblock body_attr %}
+{% block content %}
+<!-- Section Form -->
+<div id="content" class="sheet-white">
+    <div class="sheet">
+        <h3>{% trans "Contact Us" %}</h3>
+        <div class="row post">
+            <div class="col-lg-6 form-group">
+                <form action="{% url 'contactus' %}" method="post" enctype="multipart/form-data>
+                    {% csrf_token %}
+
+                    {{ contact_form.subject }}
+                    {{ contact_form.email }}
+                    {{ contact_form.content }}
+                    {{ contact_form.owner }}
+                    {{ contact_form.attachment }}
+                    <!-- Chaptcha and Submit Button: bottom of DIV -->
+                </form>
+            </div>
+
+            <div class="col-lg-6 form-group">
+                <p style="min-height: 8rem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                    At vero eos et accusam et justo duo dolores et ea rebum.
+                    <br>
+                    Attach file (up to 10 MB, only PDF, DOC, DOCX)
+                </p>
+            </div>
+            <div class="contact-button">
+                <div class="row align-items-center">
+                    <div class="col-6"> <!-- Captcha -->
+                        {{ contact_form.captcha }}
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <input type="submit" class="form-control btn btn-primary my-4" value="{% trans "Submit" %}">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

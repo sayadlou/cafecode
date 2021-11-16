@@ -1,0 +1,103 @@
+{% extends "0_base/base1.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    cafecode Profile
+{% endblock title %}
+{% block body_attr %}
+    id="home" class="bg-account"
+{% endblock body_attr %}
+{% block content %}
+    <!-- Wallpaper -->
+    <div class="sheet">
+        <div class="wallpaper">
+            <div class="row">
+                <div class="wp-card col-sm-6 col-lg-4">
+                    <h3>{% trans "Customer profile" %}</h3>
+                    <div class="card card-bg0">
+                        <div class="card-header">
+                            <b>{% trans "Name:" %}</b><br>
+                            {% if customer.user.username %}
+                                {{ customer.user.username }}
+                            {% else %}
+                                ...
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="user-details">
+                                <div class="user-info">
+                                    <p>
+                                        <b>E-mail:</b><br>
+                                        {% if customer.user.email %}
+                                            {{ customer.user.email }}
+                                        {% else %}
+                                            ...
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        <b>{% trans "Phone:" %}</b><br>
+                                        {% if customer.phone_number %}
+                                            {{ customer.phone_number }}
+                                        {% else %}
+                                            ...
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        <b>{% trans "Address:" %}</b><br>
+                                        {% if customer.address %}
+                                            {{ customer.address }}
+                                        {% else %}
+                                            ...
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        <b>{% trans "Company name:" %}</b><br>
+                                        {% if customer.company_name %}
+                                            {{ customer.company_name }}
+                                        {% else %}
+                                            ...
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        <a href="{% url "edit_profile" %}" role="button">{% trans "Edit profile data" %}<i
+                                                class="fas fa-pen"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <a class="btn btn-primary text-light" href="{% url 'signout' %}" role="button">Sign
+                                Out</a>
+                            <a class="btn btn-dark text-light" href="#content" role="button">{% trans "My orders" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="wp-logo col-sm-6 col-lg-8">
+                    <img src="
+                        {% if customer.picture %}
+                            {{ customer.picture.url }}
+                        {% else %}
+                            {% static "account/images/defult-user.jpg" %}
+                        {% endif %}
+                        " alt="user">
+                    <br>
+                    <b>  {% trans "Customer name" %} :
+                        {% if customer.name %}
+                            {{ customer.title }}&nbsp{{ customer.name }}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    </b>
+                    <br>
+                    {% trans "Customer ID number" %} : {{ customer.user_id }}
+                </div>
+            </div>
+            <div class="arrow-holder">
+                <div id="arrow" class="bounce">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

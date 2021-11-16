@@ -1,0 +1,384 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Dashboard</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'site_admin/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="{% static 'site_admin/css/ionicons.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'site_admin/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://lib.arvancloud.com/ar/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini">
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script>
+                alertify.success('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'error' %}
+            <script>
+                alertify.error('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'warning' %}
+            <script>
+                alertify.warning('{{ message }}');
+            </script>
+        {% endif %}
+        {% if message.tags == 'info' %}
+            <script>
+                alertify.message('{{ message }}');
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% for field in form %}
+    {% if field.errors %}
+        <script>
+            alertify.error('{{ field.errors.as_text }}');
+        </script>
+    {% endif %}
+{% endfor %}
+{% if signup_form %}
+    {% for field in signup_form %}
+        {% if field.errors %}
+            <script>
+                alertify.error('{{ field.errors.as_text }}');
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'home' %}" class="nav-link">Visit Site</a>
+            </li>
+        </ul>
+
+        <!-- SEARCH FORM -->
+        {#        <form class="form-inline ml-3">#}
+        {#            <div class="input-group input-group-sm">#}
+        {#                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">#}
+        {#                <div class="input-group-append">#}
+        {#                    <button class="btn btn-navbar" type="submit">#}
+        {#                        <i class="fas fa-search"></i>#}
+        {#                    </button>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </form>#}
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-comments 2"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="{% static 'site_admin/img/user1-128x128.jpg' %}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="{% static 'site_admin/img/user8-128x128.jpg' %}" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="{% static 'site_admin/img/user3-128x128.jpg' %}" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+            <!-- Notifications Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+                        class="fas fa-th-large"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        {#        <a href="{% url 'dashboard' '0' 'list' '0' %}" class="brand-link">#}
+        {#            <img src="" alt="AdminLTE Logo"#}
+        {#                 class="brand-image img-circle elevation-3 bg-white"#}
+        {#                 style="opacity: .8">#}
+        {#            <span class="brand-text font-weight-light">Cafe Code</span>#}
+        {#        </a>#}
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="{% static 'site_admin/img/IMG_0421.jpg' %}" class="img-circle elevation-2"
+                         alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Saeid sayadlou</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    {% for item in menu_list %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'dashboard' forloop.counter 'list' '0' %}">
+                                <i class="nav-icon fas {{ item.icon }}"></i>
+                                <p>{{ item.label }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid p-2">
+                {% if page_type == "list" %}
+                    {% if not no_data %}
+                        <div class="row ">
+                            <div class="col">
+                                <span class="h3">{{ title }}</span>
+                                <a class="btn btn-primary" href="{% url "dashboard" model "add" "0" %}">Add</a>
+                            </div>
+                            <div class="col-auto">
+                            </div>
+                        </div>
+                        <div class="p-2 overflow-auto">
+                            <table id="example" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    {% for head in table %}
+                                        {% if forloop.first %}
+                                            {% for key, item in head.items %}
+                                                <th scope="col">{{ key }}</th>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in table %}
+                                    <tr>
+                                        {% for key, value in row.items %}
+                                            <td> {{ value|slice:":50" }}</td>
+                                        {% endfor %}
+                                        {% for key, value in row.items %}
+                                            {% if forloop.first %}
+                                                <td>
+                                                    <div class="btn-group" role="group"
+                                                         aria-label="Basic example">
+                                                        <a href="{% url "dashboard" model "edit" value %}"
+                                                           class="btn btn-warning">Eidt</a>
+                                                        <a href="{% url "dashboard" model "delete" value %}"
+                                                           class="btn btn-danger">Delete</a>
+                                                        <a href="{% url "dashboard" model "view" value %}"
+                                                           class="btn btn-success">View</a>
+                                                    </div>
+                                                </td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <span class="h1">No Data</span>
+                        <a class="btn btn-primary" href="{% url "dashboard" model "add" "0" %}">Add</a>
+                    {% endif %}
+                {% endif %}
+                {% if page_type == "add" %}
+                    <div class="form-group p-5">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if signup_form %}
+                                {{ signup_form }}
+                            {% endif %}
+                            {{ form }}
+                            <input type="hidden" value="" name="">
+                            <div class="form-row">
+                                <div class="col-4">
+                                    <input type="submit" class="form-control btn btn-primary my-4" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+                {% if page_type == "edit" %}
+                    <div class="form-group p-5">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="hidden" value="" name="">
+                            <div class="form-row">
+                                <div class="col-4">
+                                    <input type="submit" class="form-control btn btn-primary my-4" value="Save">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+                {% if page_type == "view" %}
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for key, item in table.items %}
+                            <tr>
+                                <th scope="row">{{ key }}</th>
+                                {% if key == 'picture' %}
+                                    <td>
+                                        <img src="{{ item }}" alt="..." class="img-thumbnail">
+                                    </td>
+                                {% else %}
+                                    <td>{{ item }}</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url "dashboard" model "edit" item %}" class="btn btn-warning">Eidt</a>
+                        <a href="{% url "dashboard" model "delete" item %}" class="btn btn-danger">Delete</a>
+                    </div>
+                {% endif %}
+                <!-- /.col-md-6 -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({});
+    });
+</script>
+<!-- jQuery -->
+<!-- Bootstrap -->
+<script src="{% static 'site_admin/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE -->
+<script src="{% static 'site_admin/js/adminlte.js' %}"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+{#<script src="{% static 'post/plugins/chart.js/Chart.min.js' %}"></script>#}
+{#<script src="{% static 'post/js/demo.js' %}"></script>#}
+{#<script src="{% static 'post/js/pages/dashboard3.js' %}"></script>#}
+</body>
+</html>
